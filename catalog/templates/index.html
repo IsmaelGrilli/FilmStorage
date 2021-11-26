@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Filmstorage{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+
+<div class="container">
+<br><br>
+<h1 class="display-3">Bienvenido a FilmStorage</h1>
+<br><br><br>
+<p class="lead">
+    Bienvenido a nuestro Videoclub Online, donde traemos lo antiguo a lo nuevo. A través de nuestra página, nuestros clientes pueden observar nuestro catálogo e incluso solicitar préstamos de nuestros ejemplares.
+    Todo como era antes, pero con un toque moderno. 
+</p>
+
+<p class="lead">Número actual de ejemplares: {{ num_films }}</p>
+<p class="lead">Número de ejemplares para prestar: {{ num_instances }}</p>
+<p class="lead">Número de ejemplares disponibles: {{ num_instances_available}}</p>
+
+</div>
+
+
+{% endblock%}
