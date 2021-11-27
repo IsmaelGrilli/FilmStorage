@@ -22,7 +22,7 @@
         <th scope="col">Director</th>
         <th scope="col">Fecha de Estreno</th>
     </tr>
-    {% for pelicula in peliculas %}
+    {% for pelicula in film_list %}
     <tr>
         <th scope="row">{{ forloop.counter }}</th>
         <td>{{pelicula.title}}</td>

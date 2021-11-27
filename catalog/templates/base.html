@@ -37,35 +37,24 @@
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Directores
+                Préstamos
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="#">Añadir Director</a>
-                <a class="dropdown-item" href="#">Modificar Director</a>
-                <a class="dropdown-item" href="#">Eliminar Director</a>
+                <a class="dropdown-item" href="#">Hacer un Préstamo</a>
+                <a class="dropdown-item" href="#">Modificar un Préstamo</a>
+                <a class="dropdown-item" href="#">Cancelar un Préstamo</a>
               </div>
             </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Actores
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="#">Añadir Actor</a>
-                <a class="dropdown-item" href="#">Modificar Actor</a>
-                <a class="dropdown-item" href="#">Eliminar Actor</a>
-              </div>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Películas
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="#">Añadir Película</a>
-                <a class="dropdown-item" href="#">Modificar Película</a>
-                <a class="dropdown-item" href="#">Eliminar Película</a>
-              </div>
+            {% if user.is_authenticated %}
+              <span class="navbar-text">Has iniciado sesión, {{ user.get_username }}</span>
+              <li class="nav-item active">
+              <a class="nav-link" href="{% url 'logout'%}?next={{request.path}}">Logout</a>
+            {% else %}
+              <a class="nav-link" href="{% url 'login'%}?next={{request.path}}">Login</a>
+            {% endif %}
             </li>
           </ul>
+          
         </div>
       </nav>
       
