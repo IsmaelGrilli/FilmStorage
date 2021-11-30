@@ -2,6 +2,8 @@ from django.db import models
 from django.db.models.base import Model
 from django.db.models.fields.related import ForeignKey
 import uuid
+from datetime import date
+from django.contrib.auth.models import User
 # Create your models here.
 
 class Genre(models.Model):
@@ -61,6 +63,7 @@ class FilmInstance(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     film = models.ForeignKey('Film', on_delete=models.SET_NULL, null=True)
     fecha_devolucion = models.DateField(null=True, blank=True)
+    borrower = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
 
     LOAN_STATUS = (
         ('p', 'Prestada'),
@@ -69,6 +72,12 @@ class FilmInstance(models.Model):
     )
 
     status = models.CharField(max_length=1, choices=LOAN_STATUS, blank=True, default='d')
+
+    @property
+    def is_overdue(self):
+        if self.fecha_devolucion and date.today() > self.fecha_devolucion:
+            return True
+        return False
 
     def __str__(self):
         return '%s [%s]' % (self.id, self.film.title)

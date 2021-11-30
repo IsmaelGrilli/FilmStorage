@@ -11,4 +11,5 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('film_list/', views.FilmListView.as_view(), name='film_list'),
     path('contact/', views.index, name='contact'),
+    path('myfilms/', views.LoanedFilmsByUserListView.as_view(), name='my_films'),
 ]

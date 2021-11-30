@@ -5,6 +5,7 @@ from django.views.generic import ListView
 #from catalog.forms import AuthorForm
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
@@ -36,3 +37,10 @@ def contact(request):
 
     return render(request, 'contact.html',
         context=datos)
+
+class LoanedFilmsByUserListView(LoginRequiredMixin, generic.ListView):
+    model = FilmInstance
+    template_name = "catalog/borrowed_films.html"
+
+    def get_queryset(self):
+        return FilmInstance.objects.filter(borrower=self.request.user).filter(status='p').order_by('fecha_devolucion')

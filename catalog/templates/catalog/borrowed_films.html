@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<div class="container">
+<br><br>
+<h1 class="display-3">Mis Películas</h1>
+<br>
+<p class="lead">Observa la lista de tus préstamos</p>
+<br><br>
+{% if my_films %}
+<table class="table">
+    <tr>
+        <th scope="col">Número</th>
+        <th scope="col">Película</th>
+        <th scope="col">Fecha Devolución</th>
+    </tr>
+    {% for filminst in my_films %}
+    <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td>{{filminst.film.title}}</td>
+        <td class="">{{filminst.fecha_devolucion}}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% else %}
+    <p class="lead">No hay películas en préstamo</p>
+</div>
+{% endif %}
+
+{% endblock %}

@@ -32,14 +32,14 @@ admin.site.register(Film, FilmAdmin)
 
 class FilmInstanceAdmin(admin.ModelAdmin):
     list_filter = ('status', 'fecha_devolucion')
-    list_display = ('id', 'film', 'status', 'fecha_devolucion')
+    list_display = ('film', 'status', 'borrower', 'fecha_devolucion', 'id')
 
     fieldsets = (
         (None, {
             'fields': ('film', 'id')
         }),
         ('Disponibilidad', {
-            'fields': ('status', 'fecha_devolucion')
+            'fields': ('status', 'fecha_devolucion','borrower')
         }),
     )
 
