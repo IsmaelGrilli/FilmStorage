@@ -9,14 +9,14 @@
 <br>
 <p class="lead">Observa la lista de tus préstamos</p>
 <br><br>
-{% if my_films %}
+{% if filminstance_list %}
 <table class="table">
     <tr>
         <th scope="col">Número</th>
         <th scope="col">Película</th>
         <th scope="col">Fecha Devolución</th>
     </tr>
-    {% for filminst in my_films %}
+    {% for filminst in filminstance_list %}
     <tr>
         <th scope="row">{{ forloop.counter }}</th>
         <td>{{filminst.film.title}}</td>

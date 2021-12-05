@@ -4,6 +4,7 @@ from django.db.models.fields.related import ForeignKey
 import uuid
 from datetime import date
 from django.contrib.auth.models import User
+from django.urls import reverse
 # Create your models here.
 
 class Genre(models.Model):
@@ -25,8 +26,11 @@ class Director(models.Model):
 
     sex = models.CharField(max_length=1, choices=GENRE, blank=True, default='o', help_text="(M/F/O)")
 
+    def get_absolute_url(self):
+        return reverse('director_detail', args=[str(self.id)])
+    
     def __str__(self):
-        return '%s %s' % (self.first_name, self.last_name)
+        return f'{self.last_name}, {self.first_name}'
 
 class Actor(models.Model):
     first_name = models.CharField(max_length=30)
@@ -41,8 +45,11 @@ class Actor(models.Model):
 
     sex = models.CharField(max_length=1, choices=GENRE, blank=True, default='o', help_text="(M/F/O)")
 
+    def get_absolute_url(self):
+        return reverse('actor_detail', args=[str(self.id)])
+
     def __str__(self):
-        return '%s %s' % (self.first_name, self.last_name)
+        return f'{self.last_name}, {self.first_name}'
 
 
 class Film(models.Model):
@@ -54,7 +61,11 @@ class Film(models.Model):
     sinopsis = models.TextField(max_length=1000, null=True, blank=True)
 
     def __str__(self):
-        return '%s, Dir: %s, Actor: %s' % (self.title, self.director, self.star)
+        return self.title
+
+    def get_absolute_url(self):
+
+        return reverse('film_detail', args=[str(self.id)])
 
 
 
@@ -73,11 +84,16 @@ class FilmInstance(models.Model):
 
     status = models.CharField(max_length=1, choices=LOAN_STATUS, blank=True, default='d')
 
+    class Meta:
+        ordering = ['fecha_devolucion']
+
+    def __str__(self):
+        return f'{self.id} ({self.film.title})'
+
     @property
     def is_overdue(self):
         if self.fecha_devolucion and date.today() > self.fecha_devolucion:
             return True
         return False
 
-    def __str__(self):
-        return '%s [%s]' % (self.id, self.film.title)
+    

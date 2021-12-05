@@ -30,6 +30,7 @@ class FilmAdmin(admin.ModelAdmin):
 
 admin.site.register(Film, FilmAdmin)
 
+
 class FilmInstanceAdmin(admin.ModelAdmin):
     list_filter = ('status', 'fecha_devolucion')
     list_display = ('film', 'status', 'borrower', 'fecha_devolucion', 'id')

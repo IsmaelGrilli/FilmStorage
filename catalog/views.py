@@ -1,3 +1,4 @@
+from django.http.response import Http404
 from django.shortcuts import render, redirect
 from catalog.models import Film, Director, FilmInstance
 from django.views import generic
@@ -26,11 +27,21 @@ def index(request):
 
 def film_list(request):
     peliculas = Film.objects.all()
-    return render(request, 'film_list.html',
-        context={'peliculas': peliculas})
+    return render(request, 'film_list.html', context={'peliculas': peliculas})
 
 class FilmListView(generic.ListView):
     model = Film
+
+class FilmDetailView(generic.DetailView):
+    model = Film
+
+def film_detail_view(request, primary_key):
+    try:
+        film = Film.objects.get(pk=primary_key)
+    except Film.DoesNotExist:
+        raise Http404('La película no existe')
+
+    return render(request, 'catalog/film_detail.html', context={'film': film})
 
 def contact(request):
     datos = {'author': 'Ismael Grilli'}
