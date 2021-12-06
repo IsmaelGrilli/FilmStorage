@@ -1,7 +1,7 @@
 <html lang="en">
 
 <head>
-    <title>{% block title %}{% endblock %}</title>
+    <title>{% block title %}Filmstorage{% endblock %}</title>
 
     <!-- CSS only -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -19,49 +19,9 @@
 
     </head>
 <body>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="{% url 'index' %}">{% load static %} <img src="{% static 'film.png' %}" width="30" height="30" class="d-inline-block align-top" alt="Header image" ><span> </span>Filmstorage</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav">
-            <li class="nav-item active">
-              <a class="nav-link" href="{% url 'index' %}">Página Principal</a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="{% url 'film_list' %}">Catálogo</a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="{% url 'contact' %}">Contacto</a>
-            </li>
-            <li class="nav-item dropdown active">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Préstamos
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="#">Hacer un Préstamo</a>
-                <a class="dropdown-item" href="#">Modificar un Préstamo</a>
-                <a class="dropdown-item" href="#">Cancelar un Préstamo</a>
-              </div>
-            </li>
-            {% if user.is_authenticated %}
-            <li class="nav-item">
-              <a class="nav-link active" href="{% url 'my_films' %}">Mis Películas</a>
-            </li>
-              <span class="navbar-text">Has iniciado sesión, {{ user.get_username }}</span>
-            <li class="nav-item active">
-              <a class="nav-link" href="{% url 'logout'%}?next={{request.path}}">Logout</a>
-            {% else %}
-              <a class="nav-link" href="{% url 'login'%}?next={{request.path}}">Login</a>
-            {% endif %}
-            </li>
-          </ul>
-          
-        </div>
-      </nav>
-      
-
+    {% block navbar %}      
+      {% include 'navbar.html' %}
+    {% endblock %}
     {% block content %}
     {% endblock %}
 </body>
