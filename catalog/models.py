@@ -72,9 +72,9 @@ class Film(models.Model):
 class FilmInstance(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
-    film = models.ForeignKey('Film', on_delete=models.SET_NULL, null=True)
+    pelicula = models.ForeignKey('Film', on_delete=models.SET_NULL, null=True)
     fecha_devolucion = models.DateField(null=True, blank=True)
-    borrower = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    solicitante = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
 
     LOAN_STATUS = (
         ('p', 'Prestada'),
@@ -82,13 +82,17 @@ class FilmInstance(models.Model):
         ('r', 'Reservada'),
     )
 
-    status = models.CharField(max_length=1, choices=LOAN_STATUS, blank=True, default='d')
+    estado = models.CharField(max_length=1, choices=LOAN_STATUS, blank=True, default='d')
 
     class Meta:
         ordering = ['fecha_devolucion']
 
     def __str__(self):
-        return f'{self.id} ({self.film.title})'
+        return f'{self.id} ({self.pelicula.title})'
+
+    def get_absolute_url(self):
+
+        return reverse('filminstance_detail', args=[str(self.id)])
 
     @property
     def is_overdue(self):

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<div class="container">
+<br><br>
+<h1 class="display-3">Todas las Películas</h1>
+<br>
+<p class="lead">Gestión de los ejemplares en propiedad de Filmstorage:</p>
+<br>
+<a class="btn btn-primary" href="{% url 'instance_create' %}" role="button">Añadir un nuevo ejemplar</a>
+<br><br>
+{% if filminstance_list %}
+<table class="table">
+    <tr>
+        <th scope="col" >Número</th>
+        <th scope="col" >Película</th>
+        <th scope="col" class="text-center">Fecha Devolución</th>
+        <th scope="col" class="text-center">Solicitante</th>
+        <th scope="col" class="text-center">Identificador</th>
+        <th scope="col" class="text-center">#</th>
+    </tr>
+    {% for instance in filminstance_list %}
+    <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td>{{instance.pelicula.title}}</td>
+        {% if instance.estado == 'p' %}
+        <td class="text-center">{{instance.fecha_devolucion}}</td>
+        <td class="text-center">{{instance.solicitante}}</td>
+        {% elif instance.estado == 'r' %}
+        <td class="text-center"> - </td>
+        <td class="text-center">{{instance.solicitante}}</td>
+        {% elif instance.estado == 'd' %}
+        <td class="text-center"> - </td>
+        <td class="text-center"> - </td>
+        {% endif %}
+        <td class="text-center"><a href="{{instance.get_absolute_url}}">{{instance.id}}</a></td>
+        <td class="text-center"><a href="{{instance.get_absolute_url}}/update">Editar</a> | <a href="{{instance.get_absolute_url}}/delete" style="color: red;">Eliminar</a></td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% else %}
+    <p class="lead">No hay ejemplares registrados actualmente</p>
+</div>
+{% endif %}
+
+{% endblock %}

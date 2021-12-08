@@ -19,7 +19,7 @@
     {% for filminst in filminstance_list %}
     <tr>
         <th scope="row">{{ forloop.counter }}</th>
-        <td>{{filminst.film.title}}</td>
+        <td>{{filminst.pelicula.title}}</td>
         <td class="">{{filminst.fecha_devolucion}}</td>
     </tr>
     {% endfor %}

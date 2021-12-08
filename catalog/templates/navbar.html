@@ -14,17 +14,12 @@
         <li class="nav-item active">
           <a class="nav-link" href="{% url 'contact' %}">Contacto</a>
         </li>
-        <li class="nav-item dropdown active">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Préstamos
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="#">Hacer un Préstamo</a>
-            <a class="dropdown-item" href="#">Modificar un Préstamo</a>
-            <a class="dropdown-item" href="#">Cancelar un Préstamo</a>
-          </div>
-        </li>
         {% if user.is_authenticated %}
+          {% if request.user.is_active and request.user.is_staff %}
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'filminstance_list' %}">Nuestros Ejemplares</a>
+            </li>
+          {% endif %}
         <li class="nav-item">
           <a class="nav-link active" href="{% url 'my_films' %}">Mis Películas</a>
         </li>

@@ -32,15 +32,15 @@ admin.site.register(Film, FilmAdmin)
 
 
 class FilmInstanceAdmin(admin.ModelAdmin):
-    list_filter = ('status', 'fecha_devolucion')
-    list_display = ('film', 'status', 'borrower', 'fecha_devolucion', 'id')
+    list_filter = ('estado', 'fecha_devolucion')
+    list_display = ('pelicula', 'estado', 'solicitante', 'fecha_devolucion', 'id')
 
     fieldsets = (
         (None, {
-            'fields': ('film', 'id')
+            'fields': ('pelicula', 'id')
         }),
         ('Disponibilidad', {
-            'fields': ('status', 'fecha_devolucion','borrower')
+            'fields': ('estado', 'fecha_devolucion','solicitante')
         }),
     )
 

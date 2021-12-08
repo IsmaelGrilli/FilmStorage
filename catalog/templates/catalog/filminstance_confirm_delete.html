@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+<br><br>
+<h1 class="display-3">Eliminar ejemplar</h1>
+<br><br>
+<p class="lead">¿Está seguro de que quiere eliminar el ejemplar?</p>
+<br><br>
+
+<form action="" method="POST">
+  {% csrf_token %}
+  <input class="btn btn-primary" type="submit" value="Sí, eliminar">
+</form>
+</div>
+
+{% endblock %}
