@@ -59,6 +59,7 @@ class Film(models.Model):
     protagonista = ForeignKey('Actor', on_delete=models.SET_NULL, null=True)
     fecha_salida = models.DateField(null=True, blank=True)
     sinopsis = models.TextField(max_length=1000, null=True, blank=True)
+    imagen = models.ImageField(upload_to="imagenes", null=True)
 
     def __str__(self):
         return self.titulo

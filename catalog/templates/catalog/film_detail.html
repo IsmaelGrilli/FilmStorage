@@ -12,6 +12,11 @@
     <p class="lead">Género: {{ film.genero }} </p>
     <p class="lead">Fecha de Publicación: {{ film.fecha_salida }} </p>
     <p class="lead">Sinopsis: {{ film.sinopsis }} </p>
+    <br><br>
+    {% if film.imagen %}
+        <img src="{{ film.imagen.url }}" height="445px" width="334px">
+    {% endif %}
+    <br><br><br>
 
 </div>
 
