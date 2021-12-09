@@ -14,4 +14,6 @@ La página permite a los empleados de Filmstorage crear, modificar y eliminar ej
 
 ### Instalación del Servicio
 
-La instalación del servicio es sencilla. Deberá realizarse la descarga del mismo y un entorno python sobre el que pueda funcionar. Importando los requerimentos del fichero **requirements.txt** y ativando el servicio, la página estará lista para su uso. Para acceder a ella simplemente se deberá introducir la dirección IP asignada en el navegador.
+La instalación del servicio es sencilla. Deberá realizarse la descarga del mismo y un entorno python sobre el que pueda funcionar. Importando los requerimentos del fichero **requirements.txt** y ativando el servicio, la página estará lista para su uso. Para acceder a ella simplemente se deberá introducir la dirección IP asignada en el navegador. 
+
+Las prestaciones para el usuario administrador y los clientes serán distintas, por lo que se proporcionará el usuario administrador "admin" con contraseña "SGzj{3PX"

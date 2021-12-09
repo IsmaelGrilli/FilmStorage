@@ -24,7 +24,7 @@
     {% for instance in filminstance_list %}
     <tr>
         <th scope="row">{{ forloop.counter }}</th>
-        <td>{{instance.pelicula.title}}</td>
+        <td>{{instance.pelicula.titulo}}</td>
         {% if instance.estado == 'p' %}
         <td class="text-center">{{instance.fecha_devolucion}}</td>
         <td class="text-center">{{instance.solicitante}}</td>

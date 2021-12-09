@@ -25,9 +25,9 @@
     {% for pelicula in film_list %}
     <tr>
         <th scope="row">{{ forloop.counter }}</th>
-        <td><a href=" {{ pelicula.get_absolute_url }} ">{{pelicula.title}}</a></td>
-        <td>{{pelicula.director.first_name}} {{pelicula.director.last_name}}</td>
-        <td>{{pelicula.release_date}}</td>
+        <td><a href=" {{ pelicula.get_absolute_url }} ">{{pelicula.titulo}}</a></td>
+        <td>{{pelicula.director.nombre}} {{pelicula.director.apellido}}</td>
+        <td>{{pelicula.fecha_salida}}</td>
     </tr>
     {% endfor %}
     

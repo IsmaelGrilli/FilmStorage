@@ -14,9 +14,9 @@ class Genre(models.Model):
         return self.name
 
 class Director(models.Model):
-    first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=30)
-    date_of_birth = models.DateField(null=True, blank=True)
+    nombre = models.CharField(max_length=30)
+    apellido = models.CharField(max_length=30)
+    fecha_nacimiento = models.DateField(null=True, blank=True)
 
     GENRE = (
         ('m', 'Male'),
@@ -24,18 +24,18 @@ class Director(models.Model):
         ('o', 'Other'),
     )
 
-    sex = models.CharField(max_length=1, choices=GENRE, blank=True, default='o', help_text="(M/F/O)")
+    sexo = models.CharField(max_length=1, choices=GENRE, blank=True, default='o', help_text="(M/F/O)")
 
     def get_absolute_url(self):
         return reverse('director_detail', args=[str(self.id)])
     
     def __str__(self):
-        return f'{self.last_name}, {self.first_name}'
+        return f'{self.apellido}, {self.nombre}'
 
 class Actor(models.Model):
-    first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=30)
-    date_of_birth = models.DateField(null=True, blank=True)
+    nombre = models.CharField(max_length=30)
+    apellido = models.CharField(max_length=30)
+    fecha_nacimiento = models.DateField(null=True, blank=True)
 
     GENRE = (
         ('m', 'Male'),
@@ -43,25 +43,25 @@ class Actor(models.Model):
         ('o', 'Other'),
     )
 
-    sex = models.CharField(max_length=1, choices=GENRE, blank=True, default='o', help_text="(M/F/O)")
+    sexo = models.CharField(max_length=1, choices=GENRE, blank=True, default='o', help_text="(M/F/O)")
 
     def get_absolute_url(self):
         return reverse('actor_detail', args=[str(self.id)])
 
     def __str__(self):
-        return f'{self.last_name}, {self.first_name}'
+        return f'{self.apellido}, {self.nombre}'
 
 
 class Film(models.Model):
-    title = models.CharField(max_length=50)
+    titulo = models.CharField(max_length=50)
     director = ForeignKey('Director', on_delete=models.SET_NULL, null=True)
-    genre = ForeignKey('Genre', on_delete=models.SET_NULL, null=True)
-    star = ForeignKey('Actor', on_delete=models.SET_NULL, null=True)
-    release_date = models.DateField(null=True, blank=True)
+    genero = ForeignKey('Genre', on_delete=models.SET_NULL, null=True)
+    protagonista = ForeignKey('Actor', on_delete=models.SET_NULL, null=True)
+    fecha_salida = models.DateField(null=True, blank=True)
     sinopsis = models.TextField(max_length=1000, null=True, blank=True)
 
     def __str__(self):
-        return self.title
+        return self.titulo
 
     def get_absolute_url(self):
 
@@ -88,7 +88,7 @@ class FilmInstance(models.Model):
         ordering = ['fecha_devolucion']
 
     def __str__(self):
-        return f'{self.id} ({self.pelicula.title})'
+        return f'{self.id} ({self.pelicula.titulo})'
 
     def get_absolute_url(self):
 

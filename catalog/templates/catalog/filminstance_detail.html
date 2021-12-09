@@ -11,13 +11,13 @@
         {% if filminstance.estado == 'p' %}
         <p class="lead">Estado: Prestado </p>
         <p class="lead">Fecha de devolución: {{ filminstance.fecha_devolucion }} </p>
-        <p class="lead">Usuario: {{ filminstance.solicitante }} </p>
+        <p class="lead">Solicitante: {{ filminstance.solicitante }} </p>
         {% elif filminstance.estado == 'r'%}
         <p class="lead">Estado: Reservado </p>
-        <p class="lead">Usuario: {{ filminstance.solicitante }} </p>
+        <p class="lead">Solicitante: {{ filminstance.solicitante }} </p>
         {% else %}
         <p class="lead">Estado: Disponible </p>
-        <p class="lead">Usuario: Ninguno </p>
+        <p class="lead">Solicitante: Ninguno </p>
         {% endif %}
         {% if filminstance.is_overdue %}
             <div class="alert alert-danger" role="alert">Esta entrega se ha retrasado</div>

@@ -11,7 +11,6 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('film_list/', views.FilmListView.as_view(), name='film_list'),
     path('instances/', views.FilmInstanceListView.as_view(), name='filminstance_list'),
-    path('contact/', views.index, name='contact'),
     path('film/<int:pk>', views.FilmDetailView.as_view(), name='film_detail'),
     path('instance/<uuid:pk>', views.FilmInstanceDetailView.as_view(), name='filminstance_detail'),
     path('borrowed_films/', views.LoanedFilmsByUserListView.as_view(), name='my_films'),

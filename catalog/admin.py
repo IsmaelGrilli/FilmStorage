@@ -15,17 +15,17 @@ class FilmInstanceInline(admin.TabularInline):
     model = FilmInstance
 
 class ActorAdmin(admin.ModelAdmin):
-    list_display = ('last_name', 'first_name', 'sex', 'date_of_birth')
+    list_display = ('apellido', 'nombre', 'sexo', 'fecha_nacimiento')
 
 admin.site.register(Actor, ActorAdmin)
 
 class DirectorAdmin(admin.ModelAdmin):
-    list_display = ('last_name', 'first_name', 'sex', 'date_of_birth')
+    list_display = ('apellido', 'nombre', 'sexo', 'fecha_nacimiento')
 
 admin.site.register(Director, DirectorAdmin)
 
 class FilmAdmin(admin.ModelAdmin):
-    list_display = ('title', 'director', 'genre', 'star', 'release_date')
+    list_display = ('titulo', 'director', 'genero', 'protagonista', 'fecha_salida')
     inlines = [FilmInstanceInline]
 
 admin.site.register(Film, FilmAdmin)
